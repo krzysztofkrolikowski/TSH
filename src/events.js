@@ -1,5 +1,6 @@
 import $ from 'cash-dom';
-import {githubEventTypes} from './githubEventTypeEnum'
+import {githubEventTypes} from './githubEventTypeEnum';
+import {Loading} from './loading';
 
 export class Events {
 
@@ -10,9 +11,7 @@ export class Events {
       .then(response => {
         $(".timeline").empty();
         self.updateEventsHistory(response);
-        $(".loader").addClass("is-hidden");
-        $(".profile-container").removeClass("is-hidden");
-        $(".events-container").removeClass("is-hidden");
+        Loading.loadDataFinish();
       })
   }
 

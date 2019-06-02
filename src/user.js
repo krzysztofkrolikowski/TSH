@@ -1,5 +1,6 @@
-import $ from "cash-dom";
-import {Events} from "./events";
+import $ from 'cash-dom';
+import {Events} from './events';
+import {Loading} from './loading';
 
 const userApi = 'https://api.github.com/users/';
 const userValidationRegExp = '^[a-z0-9-_]+$';
@@ -13,6 +14,8 @@ export class User {
 
     self.toggleUserNameWarn(!isUserNameValid);
     if (isUserNameValid) {
+      Loading.loadDataStart();
+
       fetch(`${userApi}${userName}`)
         .then(response => response.json())
         .then(response => {

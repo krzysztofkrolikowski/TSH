@@ -1,5 +1,5 @@
 import $ from 'cash-dom';
-import {User} from "./user";
+import {User} from './user';
 
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
