@@ -23,3 +23,10 @@
   display: flex;
   align-items: center;
 }
+
+@media screen and (min-width: 1280px) {
+  .column.is-one-third-1280 {
+    flex: none;
+    width: 33.3333%;
+  }
+}
