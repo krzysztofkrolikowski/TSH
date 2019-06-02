@@ -4,8 +4,6 @@ import {User} from './user';
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
-
-
 export class App {
 
   initializeApp() {
