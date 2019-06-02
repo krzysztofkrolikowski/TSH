@@ -1,6 +1,7 @@
-import './assets/scss/app.scss';
 import $ from 'cash-dom';
 
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
 
 export class App {
   initializeApp() {
@@ -9,21 +10,21 @@ export class App {
     $('.load-username').on('click', function (e) {
       let userName = $('.username.input').val();
 
-      fetch('https://api.github.com/users/' + userName)
-        .then((response)=> {response.json})
-        .then(function (body) {
-          self.profile = body;
-          self.update_profile();
+      fetch(`https://api.github.com/users/${userName}`)
+        .then(response => response.json())
+        .then(response => {
+          self.updateProfile(response);
         })
 
     })
 
   }
 
-  update_profile() {
-    $('#profile-name').text($('.username.input').val())
-    $('#profile-image').attr('src', this.profile.avatar_url)
-    $('#profile-url').attr('href', this.profile.html_url).text(this.profile.login)
-    $('#profile-bio').text(this.profile.bio || '(no information)')
+  updateProfile(profile) {
+    $('#profile-name').text(profile.login)
+    $('#profile-image').attr('src', profile.avatar_url)
+    $('#profile-url').attr('href', profile.html_url)
+      .text(profile.login)
+    $('#profile-bio').text(profile.bio || '(no information)')
   }
 }
